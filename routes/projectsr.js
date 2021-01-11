@@ -16,7 +16,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const postProject = new ProjMo({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    imageUrl: req.body.description
   });
   try {
     const savedProject = await postProject.save();
@@ -52,7 +53,7 @@ module.exports = router;
 router.patch('/:postId', async (req, res) => {
 try {
     const upProject = await ProjMo.updateOne({_id: req.params.postId},
-        {$set: {title: req.body.title}}
+        {$set: {imageUrl: req.body.imageUrl}}
         );
         res.json(upProject);
 } catch (error) {
