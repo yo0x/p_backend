@@ -10,11 +10,19 @@ app.use(cors());
 //import routes
 const aboutContact  = require('./routes/aboutmer');
 const contactRoute = require('./routes/contactr');
+const goalsRoute = require('./routes/goalsr');
+const projRoute = require('./routes/projectsr');
+
+
 
 app.use(bodyParser.json());
 
 app.use('/about-me', aboutContact);
 app.use('/contact', contactRoute);
+app.use('/goals', goalsRoute);
+app.use('/projects', projRoute);
+
+
 
 
 //Routes

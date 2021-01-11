@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const AboutmeMo = require("../models/about-me");
+const ProjMo = require("../models/projects");
 
 //Gets all posts
 router.get("/", async (req, res) => {
   try {
-    const aboutmeOb = await AboutmeMo.find();
-    res.json(aboutmeOb);
+    const projOB = await ProjMo.find();
+    res.json(projOB);
   } catch (err) {
     res.json({ message: err });
   }
@@ -14,14 +14,13 @@ router.get("/", async (req, res) => {
 
 //Submits a post
 router.post("/", async (req, res) => {
-  const postAboutMe = new AboutmeMo({
+  const postProject = new ProjMo({
     title: req.body.title,
-    description: req.body.description,
-    contAbout:req.body.contAbout
+    description: req.body.description
   });
   try {
-    const savedAboutme = await postAboutMe.save();
-    res.json(savedAboutme);
+    const savedProject = await postProject.save();
+    res.json(savedProject);
   } catch (err) {
     res.json({ message: err });
   }
@@ -30,8 +29,8 @@ router.post("/", async (req, res) => {
 router.get("/:postId", async (req, res) => {
   //console.log(req.params.postId);
   try {
-    const aboutMeSpe = await AboutmeMo.findById(req.params.postId);
-    res.json(aboutMeSpe);
+    const projectSpe = await ProjMo.findById(req.params.postId);
+    res.json(projectSpe);
   } catch (err) {
     res.json({ message: err });
   }
@@ -41,7 +40,7 @@ router.get("/:postId", async (req, res) => {
 
 router.delete("/:postId", async (req, res) => {
   try {
-    const removeAbout = await AboutmeMo.remove({ _id: req.params.postId });
+    const projDel = await ProjMo.remove({ _id: req.params.postId });
   } catch (err) {
     res.json({ message: err });
   }
@@ -52,10 +51,10 @@ module.exports = router;
 //patch Post
 router.patch('/:postId', async (req, res) => {
 try {
-    const updatedAbout = await AboutmeMo.updateOne({_id: req.params.postId},
+    const upProject = await ProjMo.updateOne({_id: req.params.postId},
         {$set: {title: req.body.title}}
         );
-        res.json(updatedAbout);
+        res.json(upProject);
 } catch (error) {
     res.json({message: err});
 }
