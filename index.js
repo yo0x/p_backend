@@ -38,4 +38,8 @@ mongoose.connect(process.env.DB_CONNECION, { useNewUrlParser: true, useUnifiedTo
 );
 
 //Listen
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
