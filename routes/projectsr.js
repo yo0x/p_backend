@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
   const postProject = new ProjMo({
     title: req.body.title,
     description: req.body.description,
-    imageUrl: req.body.description
+    imageUrl: req.body.imageUrl
   });
   try {
     const savedProject = await postProject.save();

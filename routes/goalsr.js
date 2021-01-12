@@ -16,7 +16,9 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const postGoal = new GoalsMo({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    done: req.body.done,
+    collapse_id: req.body.collapse_id
   });
   try {
     const savedGoal = await postGoal.save();
